@@ -2,7 +2,7 @@ name: digicoinlib
 description:
   A straight-forward, modular library for DigiByte Wallet and other UTXO cases.
 
-version: 0.0.1
+version: 0.0.3
 repository: https://github.com/sumcoinlabs/digicoinlib
 
 environment:

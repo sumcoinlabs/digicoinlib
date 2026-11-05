@@ -1,3 +1,15 @@
+## 0.0.3 — DigiByte network compatibility and regression coverage
+
+- Verified unchanged mainnet WIF 128, P2PKH 30, P2SH 63, BIP32 versions, and Bech32 `dgb` against DigiByte Core.
+- Corrected testnet Bech32 from `tdgb` to DigiByte Core's `dgbt`; this intentionally changes testnet address encoding.
+- Added `Network.signet` (`dgbt`) and `Network.regtest` (`dgbrt`) using DigiByte Core's non-mainnet key/address versions.
+- Corrected `HDPrivateKey.fromSeed(seed, key: ...)` so an explicitly supplied HMAC label is honored; **default `Bitcoin seed` derivation remains unchanged**.
+- Added regression tests for network constants, address round trips and BIP32 default/custom derivation.
+- Corrected inherited Peercoin address, WIF and message-signature test fixtures using independently verified checksum and RFC6979 calculations.
+- Updated source documentation, development workflow and package metadata.
+- No transaction serialization rules, mainnet prefixes, or cryptographic algorithms were changed.
+- Full inherited test fixture modernization, cross-platform native builds and live Core integration are separate verification gates.
+
 ## 0.0.1
 
 dart analyze passes for digicoinlib release 0.0.1

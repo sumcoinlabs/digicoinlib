@@ -25,6 +25,7 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
+    namespace 'com.example.digicoinlib_flutter'
     // Bumping the plugin compileSdkVersion requires all clients of this plugin
     // to bump the version in their app.
     compileSdkVersion 31

@@ -2,26 +2,29 @@ import 'package:digicoinlib/digicoinlib.dart';
 import 'package:test/test.dart';
 import '../vectors/keys.dart';
 
-final privKey = WIF.fromString(
-  "UBGjv7kuxKmN1JHLJxQypz9jE7mYkKTZ9U6C1p1N2nEWbPZLiEkT",
-  version: Network.mainnet.wifPrefix,
-).privkey;
+final privKey = WIF
+    .fromString(
+      "L3P4UEwSKsNoQqZ5tnhs3QwwYDifqJYaCAq2EpxA2TnN7BfmCpdp",
+      version: Network.mainnet.wifPrefix,
+    )
+    .privkey;
 final addrs = [
   P2PKHAddress.fromPublicKey(
-    privKey.pubkey, version: Network.mainnet.p2pkhPrefix,
+    privKey.pubkey,
+    version: Network.mainnet.p2pkhPrefix,
   ),
-  P2WPKHAddress.fromPublicKey(
-    privKey.pubkey, hrp: Network.mainnet.bech32Hrp,
-  ),
+  P2WPKHAddress.fromPublicKey(privKey.pubkey, hrp: Network.mainnet.bech32Hrp),
 ];
+// Public deterministic signatures generated with RFC6979/secp256k1 using
+// the DigiByte message prefix. The key is a synthetic fixture, not a wallet.
 final msgSigs = [
   [
     "Hello, this is a message",
-    "H4UaAiTB5aNpPiwHpH1Qp7th5NxBQeLoNdk0qzqqVHmQN1f+2yMyH4eX/9Iq2gkXSN1GTnflJpZQcxqOkUtuYJc=",
+    "IJbu3Ea1d2CJ+X7fZSp4etobmPKnMhYFTRSTelEZ7vn5EBEul3zmuOcQsxUXohKmZ91DWsogskiZz+B834qMSrY=",
   ],
   [
     "The recid for this message is 1",
-    "IIXsSzUwny1RGeKNBzp9UBqlNxXisKJd5WpkrsPBVrblPETGvL8ESy4L5WpYZibQdSH04cL088zT0JMc4KAgvVY=",
+    "ILvzU6t3khfSBZGSTPMWQS9W4Y5vxsXtVFxHGZg6B/FnIm+1lYVnzB7m98xYbQdLoYjAP+olsvSszh06PIjLAew=",
   ],
 ];
 
@@ -29,7 +32,6 @@ final prefix = Network.mainnet.messagePrefix;
 
 void main() {
   group("MessageSignature", () {
-
     setUpAll(loadDigiCoinlib);
 
     test("can sign messages", () {
@@ -80,7 +82,7 @@ void main() {
       expect(
         msgSig.verifyAddress(
           address: Address.fromString(
-            "P8bB9yPr3vVByqfmM5KXftyGckAtAdu6f8",
+            "D596YFweJQuHY1BbjazZYmAbt8jJPbKehC",
             Network.mainnet,
           ),
           message: msgSigs[0][0],
@@ -89,7 +91,5 @@ void main() {
         false,
       );
     });
-
   });
-
 }

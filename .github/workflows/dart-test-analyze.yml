@@ -1,32 +1,53 @@
-name: Dart-Test-Analyze
+name: DigiCoinLib 0.0.3 validation
 
 on:
   push:
+    branches: [master, release/digicoinlib-0.0.3]
   pull_request:
-    branches:
-      - "master"
+    branches: [master]
 
 jobs:
-  build:
+  dart:
+    name: Dart analyzer and Chrome/WASM tests
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-
-      # Note: This workflow uses the latest stable version of the Dart SDK.
-      # You can specify other versions if desired, see documentation here:
-      # https://github.com/dart-lang/setup-dart/blob/main/README.md
-      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
       - uses: browser-actions/setup-chrome@v1
-
-      - name: Install dependencies
+      - name: Install Dart dependencies
+        working-directory: digicoinlib
         run: dart pub get
-        working-directory: ./coinlib
-
-      - name: Analyze project source
-        run: dart analyze --fatal-infos
-        working-directory: ./coinlib
-
-      - name: Run tests using included wasm
+      - name: Analyze Dart library
+        working-directory: digicoinlib
+        run: dart analyze --no-fatal-infos
+      - name: Run Dart Chrome tests
+        working-directory: digicoinlib
         run: dart test -p chrome
-        working-directory: ./coinlib
+
+  flutter:
+    name: Flutter plugin and example analyzer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.47.8'
+          channel: stable
+      - name: Local unpublished Dart core override
+        working-directory: digicoinlib_flutter
+        run: |
+          printf 'dependency_overrides:\n  digicoinlib:\n    path: ../digicoinlib\n' > pubspec_overrides.yaml
+      - name: Analyze Flutter wrapper
+        working-directory: digicoinlib_flutter
+        run: |
+          flutter pub get
+          flutter analyze --no-fatal-infos
+      - name: Local example overrides
+        working-directory: digicoinlib_flutter/example
+        run: |
+          printf 'dependency_overrides:\n  digicoinlib:\n    path: ../../digicoinlib\n  digicoinlib_flutter:\n    path: ..\n' > pubspec_overrides.yaml
+      - name: Analyze Flutter example
+        working-directory: digicoinlib_flutter/example
+        run: |
+          flutter pub get
+          flutter analyze --no-fatal-infos

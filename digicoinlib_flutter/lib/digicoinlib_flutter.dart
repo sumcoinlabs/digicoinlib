@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:digicoinlib/digicoinlib.dart';
 export 'package:digicoinlib/digicoinlib.dart';
 
-/// A widget that ensures the coinlib library is loaded before use. This is
+/// A widget that ensures the DigiCoinLib library is loaded before use. This is
 /// currently only necessary on web but it is good practice to use in any case.
 class DigiCoinlibLoader extends StatefulWidget {
 

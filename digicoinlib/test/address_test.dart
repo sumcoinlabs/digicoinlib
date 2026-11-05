@@ -43,9 +43,10 @@ void expectBech32Equal(Bech32Address addr, Bech32Address expected) {
 }
 
 void expectValidAddress<T extends Address>(
-  String encoded, Network network, T expected,
+  String encoded,
+  Network network,
+  T expected,
 ) {
-
   final baseDecoded = Address.fromString(encoded, network);
   expect(baseDecoded, isA<T>());
 
@@ -78,13 +79,10 @@ void expectValidAddress<T extends Address>(
     expectBech32Equal(b32Base, expected);
     expectBech32Equal(b32Sub, expected);
   }
-
 }
 
 void main() {
-
   group("Address", () {
-
     late ECPublicKey pubkey;
     setUpAll(() async {
       await loadDigiCoinlib();
@@ -94,9 +92,8 @@ void main() {
     });
 
     test("valid P2PKH addresses", () {
-
       expectValidAddress(
-        "P8bB9yPr3vVByqfmM5KXftyGckAtAdu6f8",
+        "D596YFweJQuHY1BbjazZYmAbt8jJPbKehC",
         Network.mainnet,
         P2PKHAddress.fromHash(
           hexToBytes("0000000000000000000000000000000000000000"),
@@ -105,19 +102,18 @@ void main() {
       );
 
       expectValidAddress(
-        "PGkLtYrKeMDbBCaFy4yMRhN9ZTjJp2y8Pb",
+        "DDJGGqQ7tqdgjN66MaePJZZUprHizV2YXW",
         Network.mainnet,
         P2PKHAddress.fromPublicKey(
-          pubkey, version: Network.mainnet.p2pkhPrefix,
+          pubkey,
+          version: Network.mainnet.p2pkhPrefix,
         ),
       );
-
     });
 
     test("valid P2SH addresses", () {
-
       expectValidAddress(
-        "pUtBBpAznHgPW9TDtWJcDo7qGXQJqnf1W9",
+        "Skdc1x5SSYf5LjvYZrKQ32RMHHVNUBJJt6",
         Network.mainnet,
         P2SHAddress.fromHash(
           hexToBytes("ffffffffffffffffffffffffffffffffffffffff"),
@@ -126,20 +122,18 @@ void main() {
       );
 
       expectValidAddress(
-        "pL5vkwAVx6Qo1AVm7dzW5XKxP4meAjZQS1",
+        "SbqMb54wcMPUqky5nz1HtkdUPprhjHFRf2",
         Network.mainnet,
         P2SHAddress.fromRedeemScript(
           Script.fromAsm("0"),
           version: Network.mainnet.p2shPrefix,
         ),
       );
-
     });
 
     test("valid P2WPKH addresses", () {
-
       expectValidAddress(
-        "pc1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqmtd2rq",
+        "dgb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjz6vm7",
         Network.mainnet,
         P2WPKHAddress.fromHash(
           hexToBytes("0000000000000000000000000000000000000000"),
@@ -148,19 +142,15 @@ void main() {
       );
 
       expectValidAddress(
-        "pc1qt97wqg464zrhnx23upykca5annqvwkwuvqmpk5",
+        "dgb1qt97wqg464zrhnx23upykca5annqvwkwu9fv8w2",
         Network.mainnet,
-        P2WPKHAddress.fromPublicKey(
-          pubkey, hrp: Network.mainnet.bech32Hrp,
-        ),
+        P2WPKHAddress.fromPublicKey(pubkey, hrp: Network.mainnet.bech32Hrp),
       );
-
     });
 
     test("valid P2WSH addresses", () {
-
       expectValidAddress(
-        "pc1qlllllllllllllllllllllllllllllllllllllllllllllllllllsm5knxw",
+        "dgb1qllllllllllllllllllllllllllllllllllllllllllllllllllls5r8ra0",
         Network.mainnet,
         P2WSHAddress.fromHash(
           hexToBytes(
@@ -171,20 +161,18 @@ void main() {
       );
 
       expectValidAddress(
-        "pc1qdc6qh88lkdaf3899gnntk7q293ufq8flkvmnsa59zx3sv9a05qwsgzh235",
+        "dgb1qdc6qh88lkdaf3899gnntk7q293ufq8flkvmnsa59zx3sv9a05qws84x624",
         Network.mainnet,
         P2WSHAddress.fromWitnessScript(
           Script.fromAsm("0"),
           hrp: Network.mainnet.bech32Hrp,
         ),
       );
-
     });
 
     test("valid P2TR addresses", () {
-
       expectValidAddress(
-        "pc1punvppl2stp38f7kwv2u2spltjuvuaayuqsthe34hd2dyy5w4g58qj5f0v2",
+        "dgb1punvppl2stp38f7kwv2u2spltjuvuaayuqsthe34hd2dyy5w4g58qarclht",
         Network.mainnet,
         P2TRAddress.fromTweakedKeyX(
           hexToBytes(
@@ -195,7 +183,7 @@ void main() {
       );
 
       expectValidAddress(
-        "pc1pz37fc4cn9ah8anwm4xqqhvxygjf9rjf2resrw8h8w4tmvcs0863s0hvxry",
+        "dgb1pz37fc4cn9ah8anwm4xqqhvxygjf9rjf2resrw8h8w4tmvcs0863sqqakc9",
         Network.mainnet,
         P2TRAddress.fromTweakedKey(
           ECPublicKey.fromXOnlyHex(
@@ -206,21 +194,19 @@ void main() {
       );
 
       expectValidAddress(
-        "pc1p2wsldez5mud2yam29q22wgfh9439spgduvct83k3pm50fcxa5dpsxcz8x2",
+        "dgb1p2wsldez5mud2yam29q22wgfh9439spgduvct83k3pm50fcxa5dpsf0nhat",
         Network.mainnet,
         P2TRAddress.fromTaproot(
           taprootVectors[0].object,
           hrp: Network.mainnet.bech32Hrp,
         ),
       );
-
     });
 
     test("valid unknown witness addresses", () {
-
       // 40 program bytes
       expectValidAddress(
-        "pc1sqqqsyqcyq5rqwzqfpg9scrgwpugpzysnzs23v9ccrydpk8qarc0jqgfzyvjz2f38pj2w3g",
+        "dgb1sqqqsyqcyq5rqwzqfpg9scrgwpugpzysnzs23v9ccrydpk8qarc0jqgfzyvjz2f38dwqqym",
         Network.mainnet,
         UnknownWitnessAddress.fromHex(
           "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f2021222324252627",
@@ -231,7 +217,7 @@ void main() {
 
       // 2 program bytes
       expectValidAddress(
-        "pc1sqqqsfrujuz",
+        "dgb1sqqqsg82cq5",
         Network.mainnet,
         UnknownWitnessAddress.fromHex(
           "0001",
@@ -239,36 +225,34 @@ void main() {
           hrp: Network.mainnet.bech32Hrp,
         ),
       );
-
     });
 
     test("invalid addresses", () {
-
       for (final invalid in [
         // Neither valid bech32 or base58
         "",
         // Too-short
         "61pApofd7QTRzWAb5UebizEXJ6C1cCzLU",
         "TTazDDREDxxh1mPyGySut6H98h4UKPG6",
-        "pc1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq3nu382",
-        "pc1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq2zhzfj",
-        "pc1pqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq2trl7f",
+        "dgb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqru3065",
+        "dgb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq6x32u6",
+        "dgb1pqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq609htp",
         // Too-long
         "9tT9KH26AxgN8j9uTpKdwUkK6LFcSKp4FpF",
-        "pc1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqquk6wwa",
-        "pc1pqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqgk5ml5",
+        "dgb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq52efs9",
+        "dgb1pqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq2hupv",
         // Segwit version 17
-        "pc13qqqsyqcyq5rqwzqfpg9scrgwpugpzysnzs23v9ccrydpk8qarc0sxaytzs",
+        "dgb13qqqsyqcyq5rqwzqfpg9scrgwpugpzysnzs23v9ccrydpk8qarc0sf24me3",
         // Too long unknown segwit
-        "pc1sqqqsyqcyq5rqwzqfpg9scrgwpugpzysnzs23v9ccrydpk8qarc0jqgfzyvjz2f389qyd22c5",
+        "dgb1sqqqsyqcyq5rqwzqfpg9scrgwpugpzysnzs23v9ccrydpk8qarc0jqgfzyvjz2f389qud8hnp",
         // Too short unknown segwit
-        "pc1sqqwczah4",
+        "dgb1sqqtathd9",
         // Bech32m for v=0
-        "pc1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqwhaxxz",
+        "dgb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq872q7u",
         // Bech32 for v=1
-        "pc1pqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqs46pwt",
+        "dgb1pqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqeud8k4",
         // Unpadded bits
-        "pc1qqqqsyqcyq5rqwzqfpg9scrgwpugpzysnzs23v9ccrydpk8qarc0pcfzdx",
+        "dgb1qqqqsyqcyq5rqwzqfpg9scrgwpugpzysnzs23v9ccrydpk8qarc0slf0s4",
       ]) {
         expect(
           () => Address.fromString(invalid, Network.mainnet),
@@ -276,19 +260,19 @@ void main() {
           reason: invalid,
         );
       }
-
     });
 
     test("invalid checksums", () {
       expect(
         () => Address.fromString(
-          "P8bB9yPr3vVByqfmM5KXftyGckAtAdu6f9", Network.mainnet,
+          "D596YFweJQuHY1BbjazZYmAbt8jJPbKehD",
+          Network.mainnet,
         ),
         throwsA(isA<InvalidBase58Checksum>()),
       );
       expect(
         () => Address.fromString(
-          "pc1qlllllllllllllllllllllllllllllllllllllllllllllllllllsm5knxx",
+          "dgb1qllllllllllllllllllllllllllllllllllllllllllllllllllls5r8raa",
           Network.mainnet,
         ),
         throwsA(isA<InvalidBech32Checksum>()),
@@ -305,7 +289,6 @@ void main() {
     });
 
     test("invalid version, program and hrp arguments", () {
-
       // Too small program
       expect(
         () => UnknownWitnessAddress.fromHex(
@@ -331,7 +314,9 @@ void main() {
         () => UnknownWitnessAddress.fromHex(
           "0001",
           version: 16,
-          hrp: "\x7f""1axkwrx",
+          hrp:
+              "\x7f"
+              "1axkwrx",
         ),
         throwsArgumentError,
       );
@@ -353,38 +338,46 @@ void main() {
         ),
         throwsArgumentError,
       );
-
     });
 
     final longHrp =
-      "thishrpis78byteslongleadingthetotalsizetobe90characterswitheverythingincluded1";
+        "thishrpis78byteslongleadingthetotalsizetobe90characterswitheverythingincluded1";
 
     test("arguments correct size", () {
-
-      final addr = UnknownWitnessAddress.fromHex("0001", version: 16, hrp: longHrp);
+      final addr = UnknownWitnessAddress.fromHex(
+        "0001",
+        version: 16,
+        hrp: longHrp,
+      );
 
       expectValidAddress(
         "${longHrp}1sqqqs3t97ut",
         Network(
-          wifPrefix: 0, p2shPrefix: 0, p2pkhPrefix: 0,
-          privHDPrefix: 0, pubHDPrefix: 0,
-          bech32Hrp: longHrp, messagePrefix: "",
+          wifPrefix: 0,
+          p2shPrefix: 0,
+          p2pkhPrefix: 0,
+          privHDPrefix: 0,
+          pubHDPrefix: 0,
+          bech32Hrp: longHrp,
+          messagePrefix: "",
           feePerKb: BigInt.from(10000),
           minFee: BigInt.from(1000),
           minOutput: BigInt.from(10000),
         ),
         addr,
       );
-
     });
 
     test("arguments too long", () {
       expect(
-        () => UnknownWitnessAddress.fromHex("0001", version: 16, hrp: "${longHrp}1"),
+        () => UnknownWitnessAddress.fromHex(
+          "0001",
+          version: 16,
+          hrp: "${longHrp}1",
+        ),
         throwsArgumentError,
       );
     });
-
   });
 
   group("Base58Address", () {
@@ -406,5 +399,4 @@ void main() {
       expect(addr.data, Uint8List(20));
     });
   });
-
 }
