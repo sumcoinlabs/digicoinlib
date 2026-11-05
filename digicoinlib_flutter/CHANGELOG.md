@@ -1,3 +1,11 @@
+## 0.0.3 — Android Gradle Plugin 8 compatibility
+
+- Declared `com.example.digicoinlib_flutter` as the Android library namespace.
+- Removed the obsolete Android manifest `package` attribute.
+- Updated dependency on the DigiCoinLib Dart core package to `^0.0.3`.
+- Updated local Flutter example project and package documentation.
+- No changes to the exposed `DigiCoinlibLoader` API or native secp256k1 algorithm.
+
 ## 0.0.2
 
 dart analyze passes for digicoinlib, some issues known for digicoinlib_flutter but works.  release to 0.0.2

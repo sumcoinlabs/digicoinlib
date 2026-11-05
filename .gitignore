@@ -1,1 +1,11 @@
 .DS_Store
+
+# Unpublished-package local validation only
+**/pubspec_overrides.yaml
+
+# Local Dart/Flutter test/build artifacts (not library sources)
+**/.dart_tool/
+**/build/
+**/.cxx/
+**/.gradle/
+digicoinlib_flutter/example/pubspec.lock

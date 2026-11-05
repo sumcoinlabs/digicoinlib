@@ -256,7 +256,7 @@ class HDPrivateKey extends HDKey {
       throw ArgumentError("Seed should be between 16 and 64 bytes", "seed");
     }
 
-    final hash = hmacSha512(utf8.encode("Bitcoin seed"), seed);
+    final hash = hmacSha512(utf8.encode(key), seed);
     return HDPrivateKey(
       privateKey: ECPrivateKey(hash.sublist(0, 32)),
       chaincode: hash.sublist(32),

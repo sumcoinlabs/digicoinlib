@@ -1,62 +1,39 @@
 <p align="center">
-  <img
-    src="https://raw.githubusercontent.com/sumcoinlabs/digicoinlib/master/logo.svg"
-    alt="Sumcoinlib"
-    width="250px"
-  >
+  <a href="https://digibyte.org/"><img src="https://raw.githubusercontent.com/DigiByte-Core/digibyte/develop/share/pixmaps/digibyte256.png" width="110" alt="DigiByte logo"></a>
 </p>
-
 <p align="center">
-<!--  <a href="https://chainz.cryptoid.info/ppc/address.dws?p77CZFn9jvg9waCzKBzkQfSvBBzPH1nRre"> -->
-  <a href="https://sumexplorer.com">
-  <img src="https://badgen.net/badge/sumcoin/Donate/blue?icon=https://sumcoin.org/wp-content/uploads/2019/07/sumcoin_400x400.png" alt="DigiByte Donate">
-
-  </a>
-  <a href="https://pub.dev/packages/digicoinlib">
-    <img alt="pub.dev" src="https://img.shields.io/pub/v/digicoinlib?logo=dart&label=pub.dev">
-  </a>
+  <a href="https://github.com/sumcoinlabs/digicoinlib"><img src="https://img.shields.io/badge/source-0.0.3--candidate-0066CC" alt="DigiCoinLib 0.0.3 source"></a>
+  <a href="https://github.com/sumcoinlabs/digicoinlib/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-BSD--3--Clause-blue" alt="BSD-3-Clause"></a>
+  <a href="https://github.com/sumcoinlabs/digicoinlib/tree/master/digicoinlib"><img src="https://img.shields.io/badge/Dart-library-0175C2?logo=dart" alt="Dart library"></a>
+  <a href="https://github.com/sumcoinlabs/digicoinlib/tree/master/digicoinlib_flutter"><img src="https://img.shields.io/badge/Flutter-plugin-02569B?logo=flutter" alt="Flutter plugin"></a>
+  <a href="https://github.com/sumcoinlabs/digicoinlib/actions/workflows/dart-test-analyze.yml"><img src="https://github.com/sumcoinlabs/digicoinlib/actions/workflows/dart-test-analyze.yml/badge.svg?branch=master" alt="CI status"></a>
 </p>
 
-# Sumcoinlib
+# DigiCoinLib Dart — 0.0.3 candidate
 
-Sumcoinlib is a straight-forward and modular library for DigiByte and other similar
-cryptocoins including Taproot support. This library allows for the construction
-and signing of transactions and management of BIP32 wallets.
+DigiByte-focused Dart library for secp256k1, BIP32, WIF, addresses, message signing and UTXO transactions.
 
-## Installation and Usage
+Install after publication:
 
-If you are using flutter, please see
-[digicoinlib_flutter](https://pub.dev/packages/digicoinlib_flutter) instead. Otherwise
-you may add `digicoinlib` to your project via:
-
-```
+```sh
 dart pub add digicoinlib
 ```
 
-If you are using the library for web, the library is ready to use. If you are
-using the library on Linux, macOS, or Windows, then please see
-["Building for Linux"](#building-for-linux),
-["Building for macOS"](#building-for-macos), or
-["Building for Windows"](#building-for-windows) below.
-
-The library can be imported via:
-
-```
-import 'package:digicoinlib/sumsumdigicoinlib.dart';
-```
-
-The library must be asynchronously loaded by awaiting the `loadDigiCoinlib()`
-function before any part of the library is used.
-
-The library uses a functional-style of OOP. With some exceptions, objects are
-immutable. New modified objects are returned from methods. For example, signing
-a transaction returns a new signed transaction object:
-
 ```dart
-final signedTx = unsignedTx.sign(inputN: 0, key: privateKey);
+import 'package:digicoinlib/digicoinlib.dart';
+
+Future<void> main() async {
+  await loadDigiCoinlib();
+  final network = Network.mainnet;
+  print(network.bech32Hrp); // dgb
+}
 ```
 
-An example is found in the `example/` directory.
+`Network.testnet`, `Network.signet` and `Network.regtest` use DigiByte Core constants; see [MIGRATION.md](../MIGRATION.md). Default `Bitcoin seed` HMAC key is retained to preserve BIP32 wallet recovery.
+
+For Flutter use [`digicoinlib_flutter`](../digicoinlib_flutter/README.md), which loads platform-specific secp256k1 support. Library APIs for witness/Taproot construction do not imply network activation.
+
+## Platform build and development reference
 
 ## Building for Linux
 

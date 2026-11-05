@@ -1,34 +1,40 @@
 <p align="center">
-  <img
-    src="https://raw.githubusercontent.com/sumcoinlabs/digicoinlib/master/logo.svg"
-    alt="DigiCoinlib"
-    width="250px"
-  >
+  <a href="https://digibyte.org/"><img src="https://raw.githubusercontent.com/DigiByte-Core/digibyte/develop/share/pixmaps/digibyte256.png" width="110" alt="DigiByte logo"></a>
 </p>
-
 <p align="center">
-<!--  <a href="https://chainz.cryptoid.info/ppc/address.dws?p77CZFn9jvg9waCzKBzkQfSvBBzPH1nRre"> -->
-  <a href="https://sumexplorer.com">
-  <img src="https://badgen.net/badge/sumcoin/Donate/blue?icon=https://sumcoin.org/wp-content/uploads/2019/07/sumcoin_400x400.png" alt="DigiByte Donate">
-
-  <a href="https://pub.dev/packages/digicoinlib_flutter">
-    <img alt="pub.dev" src="https://img.shields.io/pub/v/digicoinlib_flutter?logo=dart&label=pub.dev">
-  </a>
+  <a href="https://github.com/sumcoinlabs/digicoinlib"><img src="https://img.shields.io/badge/source-0.0.3--candidate-0066CC" alt="DigiCoinLib 0.0.3 source"></a>
+  <a href="https://github.com/sumcoinlabs/digicoinlib/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-BSD--3--Clause-blue" alt="BSD-3-Clause"></a>
+  <a href="https://github.com/sumcoinlabs/digicoinlib/tree/master/digicoinlib"><img src="https://img.shields.io/badge/Dart-library-0175C2?logo=dart" alt="Dart library"></a>
+  <a href="https://github.com/sumcoinlabs/digicoinlib/tree/master/digicoinlib_flutter"><img src="https://img.shields.io/badge/Flutter-plugin-02569B?logo=flutter" alt="Flutter plugin"></a>
+  <a href="https://github.com/sumcoinlabs/digicoinlib/actions/workflows/dart-test-analyze.yml"><img src="https://github.com/sumcoinlabs/digicoinlib/actions/workflows/dart-test-analyze.yml/badge.svg?branch=master" alt="CI status"></a>
 </p>
 
-# Sumcoinlib for Flutter
+# DigiCoinLib Flutter — 0.0.3 candidate
 
-This package provides flutter support for the
-[digicoinlib](https://pub.dev/packages/digicoinlib) library for DigiByte and
-other cryptocoins. A `DigiCoinlibLoader` widget is included that must be used when
-targeting web to ensure the library is ready to be used.
+Flutter platform wrapper for [`digicoinlib`](../digicoinlib/README.md), including native secp256k1 integration and the `DigiCoinlibLoader` widget for asynchronous initialization.
 
-An example app is provided in `example/` that demonstrates use of the loader
-widget. Beyond this, the [digicoinlib](https://pub.dev/packages/digicoinlib) library
-documentation can be followed.
+Install after both packages are published:
 
-Android, iOS, Linux, macOS, web, and Windows are supported. If you are using the
-package for Android, iOS, Linux, macOS or web, the library is ready to use. For
-Windows, run `dart run digicoinlib:build_windows` to build the library. See
-[digicoinlib's documentation](https://pub.dev/packages/digicoinlib) for more detailed
-instructions on and options for building the native library.
+```sh
+flutter pub add digicoinlib_flutter
+```
+
+```dart
+import 'package:flutter/widgets.dart';
+import 'package:digicoinlib_flutter/digicoinlib_flutter.dart';
+
+class DigiByteLoaderExample extends StatelessWidget {
+  const DigiByteLoaderExample({super.key});
+
+  @override
+  Widget build(BuildContext context) => DigiCoinlibLoader(
+    loadChild: const Text('Loading DigiCoinLib'),
+    errorBuilder: (context, error) => Text('Error: $error'),
+    builder: (context) => const Text('DigiCoinLib ready'),
+  );
+}
+```
+
+Supports Android, iOS, Linux, macOS, Windows and web with platform-specific setup. Android uses the explicit `com.example.digicoinlib_flutter` Gradle namespace required by AGP 8+. The example application at [`example/`](example/) uses a local path reference to the wrapper, not a nonexistent hosted 2.0.0 version.
+
+Before publication, resolve the sibling Dart core using local development overrides. See [MIGRATION.md](../MIGRATION.md) and [VALIDATION.md](../VALIDATION.md). No cryptographic primitives were changed in this wrapper release.

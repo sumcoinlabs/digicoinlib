@@ -36,10 +36,38 @@ class Network {
     p2shPrefix: 140,
     privHDPrefix: 0x04358394,
     pubHDPrefix: 0x043587CF,
-    bech32Hrp: "tdgb",
+    bech32Hrp: "dgbt",
     messagePrefix: "DigiByte Signed Message:\n",
     minFee: BigInt.from(1000),
     minOutput: BigInt.from(10000), 
+    feePerKb: BigInt.from(10000),
+  );
+
+  // DigiByte signet: DigiByte Core uses testnet key/address versions.
+  static final signet = Network(
+    wifPrefix: 254,
+    p2pkhPrefix: 126,
+    p2shPrefix: 140,
+    privHDPrefix: 0x04358394,
+    pubHDPrefix: 0x043587CF,
+    bech32Hrp: "dgbt",
+    messagePrefix: "DigiByte Signed Message:\n",
+    minFee: BigInt.from(1000),
+    minOutput: BigInt.from(10000),
+    feePerKb: BigInt.from(10000),
+  );
+
+  // DigiByte regression-test network (DigiByte Core src/kernel/chainparams.cpp).
+  static final regtest = Network(
+    wifPrefix: 254,
+    p2pkhPrefix: 126,
+    p2shPrefix: 140,
+    privHDPrefix: 0x04358394,
+    pubHDPrefix: 0x043587CF,
+    bech32Hrp: "dgbrt",
+    messagePrefix: "DigiByte Signed Message:\n",
+    minFee: BigInt.from(1000),
+    minOutput: BigInt.from(10000),
     feePerKb: BigInt.from(10000),
   );
 

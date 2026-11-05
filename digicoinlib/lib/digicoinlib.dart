@@ -1,4 +1,4 @@
-/// A dart library for DigiByte using secp256k1 with corss-platform support
-library coinlib;
+/// DigiCoinLib: DigiByte transaction and key APIs with cross-platform secp256k1.
+library digicoinlib;
 
 export 'src/digicoinlib_base.dart';

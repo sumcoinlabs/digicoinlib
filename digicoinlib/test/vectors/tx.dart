@@ -38,7 +38,7 @@ final examplePubkey = ECPublicKey.fromHex(
 final exampleOutput = Output.fromAddress(
   BigInt.from(100000),
   Address.fromString(
-    "PSUVJAon4oTrVZgHEKg3UfppFEDP7gBSkt",
+    "DP2QgTMaKHsx3jC7cqM5MY29WcmoMaSRNe",
     Network.mainnet,
   ),
 );
@@ -127,14 +127,14 @@ final validTxVecs = [
         Output.fromAddress(
           BigInt.from(52680000),
           Address.fromString(
-            "PAe4rizffK1jrg84AEoaYv75uyLoWgtbB1",
+            "D7BzF1YTuoRqQqdtYkUcRnJRBMuDkRzqqu",
             Network.mainnet,
           ),
         ),
         Output.fromAddress(
           BigInt.from(3032597),
           Address.fromString(
-            "PCLHR5x8X2bitLes8DiSMTswpc46zt6THo",
+            "D8tCoNVvmX1pSWAhWjPUEL5H5zcXEMZr9S",
             Network.mainnet,
           ),
         ),
@@ -349,7 +349,7 @@ final validTxVecs = [
         Output.fromAddress(
           BigInt.from(2501463873),
           Address.fromString(
-            "PQfazmXYxj7BKQG9jGbjKaQzYyi8AGEkH1",
+            "DMDWP45MDDXGsZmz7nGmCScKpNGYMLXhph",
             Network.mainnet,
           ),
         ),

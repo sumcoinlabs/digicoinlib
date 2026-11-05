@@ -15,7 +15,8 @@ class OutputVector {
     required String outHex,
     required this.progType,
     this.address,
-  }) : scriptBytes = hexToBytes(scriptHex), outBytes = hexToBytes(outHex);
+  }) : scriptBytes = hexToBytes(scriptHex),
+       outBytes = hexToBytes(outHex);
 }
 
 final vectors = [
@@ -23,17 +24,18 @@ final vectors = [
     value: BigInt.from(0),
     scriptHex: "76a914${pubkeyhashVec}88ac",
     outHex:
-    "00000000000000001976a914751e76e8199196d454941c45d1b3a323f1433bd688ac",
+        "00000000000000001976a914751e76e8199196d454941c45d1b3a323f1433bd688ac",
     progType: P2PKH,
-    address: "PKGSi8HTQzLx89rkZrRrVkPFjrcSC55NP9",
+    address: "DFpN6QqFfUm3gKNaxN6tNcab1FArL9cZLE",
   ),
   OutputVector(
     value: Output.maxValue,
-    scriptHex: "0020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    scriptHex:
+        "0020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
     outHex:
-    "ffffffffffffffff220020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "ffffffffffffffff220020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
     progType: P2WSH,
-    address: "pc1qlllllllllllllllllllllllllllllllllllllllllllllllllllsm5knxw",
+    address: "dgb1qllllllllllllllllllllllllllllllllllllllllllllllllllls5r8ra0",
   ),
   OutputVector(
     value: BigInt.from(1),
@@ -50,13 +52,9 @@ final vectors = [
 ];
 
 void main() {
-
   group("Output", () {
-
     test("can read and write outputs", () {
-
       expectOutput(Output out, OutputVector vec) {
-
         expect(out.value, vec.value);
         expect(out.size, vec.outBytes.length);
         expect(out.scriptPubKey, vec.scriptBytes);
@@ -66,7 +64,6 @@ void main() {
         if (vec.progType != Null) {
           expect(out.program!.script.compiled, vec.scriptBytes);
         }
-
       }
 
       for (final vec in vectors) {
@@ -88,7 +85,6 @@ void main() {
           );
         }
       }
-
     });
 
     test("requires value 0-uint8_max", () {
@@ -107,7 +103,5 @@ void main() {
       output.scriptPubKey[1] = 0xff;
       expect(output.scriptPubKey, Uint8List(2));
     });
-
   });
-
 }
