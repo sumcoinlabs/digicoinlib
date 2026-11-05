@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://digibyte.org/"><img src="https://raw.githubusercontent.com/DigiByte-Core/digibyte/develop/share/pixmaps/digibyte256.png" width="110" alt="DigiByte logo"></a>
+  <a href="https://digibyte.org/"><img src="https://raw.githubusercontent.com/DigiByte-Core/digibyte-logos/master/Symbol%20Icons/512x512.png" width="110" alt="DigiByte logo"></a>
 </p>
 <p align="center">
   <a href="https://pub.dev/packages/digicoinlib/versions/0.0.3"><img src="https://img.shields.io/badge/Dart-0.0.3%20published-0175C2" alt="DigiCoinLib Dart 0.0.3 published"></a>
