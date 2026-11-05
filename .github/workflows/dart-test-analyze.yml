@@ -8,7 +8,7 @@ on:
 
 jobs:
   dart:
-    name: Dart analyzer and Chrome/WASM tests
+    name: Dart analyzer and Chrome tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,7 +19,7 @@ jobs:
         run: dart pub get
       - name: Analyze Dart library
         working-directory: digicoinlib
-        run: dart analyze --no-fatal-infos
+        run: dart analyze
       - name: Run Dart Chrome tests
         working-directory: digicoinlib
         run: dart test -p chrome
@@ -37,15 +37,15 @@ jobs:
         working-directory: digicoinlib_flutter
         run: |
           printf 'dependency_overrides:\n  digicoinlib:\n    path: ../digicoinlib\n' > pubspec_overrides.yaml
+      - name: Local example overrides
+        working-directory: digicoinlib_flutter/example
+        run: |
+          printf 'dependency_overrides:\n  digicoinlib:\n    path: ../../digicoinlib\n  digicoinlib_flutter:\n    path: ..\n' > pubspec_overrides.yaml
       - name: Analyze Flutter wrapper
         working-directory: digicoinlib_flutter
         run: |
           flutter pub get
           flutter analyze --no-fatal-infos
-      - name: Local example overrides
-        working-directory: digicoinlib_flutter/example
-        run: |
-          printf 'dependency_overrides:\n  digicoinlib:\n    path: ../../digicoinlib\n  digicoinlib_flutter:\n    path: ..\n' > pubspec_overrides.yaml
       - name: Analyze Flutter example
         working-directory: digicoinlib_flutter/example
         run: |
