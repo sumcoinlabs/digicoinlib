@@ -2,18 +2,19 @@
   <a href="https://digibyte.org/"><img src="https://raw.githubusercontent.com/DigiByte-Core/digibyte/develop/share/pixmaps/digibyte256.png" width="110" alt="DigiByte logo"></a>
 </p>
 <p align="center">
-  <a href="https://github.com/sumcoinlabs/digicoinlib"><img src="https://img.shields.io/badge/source-0.0.3--candidate-0066CC" alt="DigiCoinLib 0.0.3 source"></a>
+  <a href="https://pub.dev/packages/digicoinlib/versions/0.0.3"><img src="https://img.shields.io/badge/Dart-0.0.3%20published-0175C2" alt="DigiCoinLib Dart 0.0.3 published"></a>
+  <a href="https://pub.dev/packages/digicoinlib_flutter/versions/0.0.3"><img src="https://img.shields.io/badge/Flutter-0.0.3%20published-02569B" alt="DigiCoinLib Flutter 0.0.3 published"></a>
   <a href="https://github.com/sumcoinlabs/digicoinlib/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-BSD--3--Clause-blue" alt="BSD-3-Clause"></a>
   <a href="https://github.com/sumcoinlabs/digicoinlib/tree/master/digicoinlib"><img src="https://img.shields.io/badge/Dart-library-0175C2?logo=dart" alt="Dart library"></a>
   <a href="https://github.com/sumcoinlabs/digicoinlib/tree/master/digicoinlib_flutter"><img src="https://img.shields.io/badge/Flutter-plugin-02569B?logo=flutter" alt="Flutter plugin"></a>
   <a href="https://github.com/sumcoinlabs/digicoinlib/actions/workflows/dart-test-analyze.yml"><img src="https://github.com/sumcoinlabs/digicoinlib/actions/workflows/dart-test-analyze.yml/badge.svg?branch=master" alt="CI status"></a>
 </p>
 
-# DigiCoinLib Dart — 0.0.3 candidate
+# DigiCoinLib Dart — 0.0.3
 
 DigiByte-focused Dart library for secp256k1, BIP32, WIF, addresses, message signing and UTXO transactions.
 
-Install after publication:
+Install the published package:
 
 ```sh
 dart pub add digicoinlib

@@ -20,10 +20,13 @@ No intended changes to `Network.mainnet`, standard `HDPrivateKey.fromSeed(seed)`
 
 The Flutter wrapper now declares its Android namespace for modern Android Gradle Plugin builds. The Dart import and `DigiCoinlibLoader` API are unchanged.
 
-## Publishing order
+## Release status
 
-1. Validate and publish `digicoinlib` 0.0.3.
-2. Resolve the hosted dependency, validate and publish `digicoinlib_flutter` 0.0.3.
-3. Change DigiByte Wallet to `digicoinlib_flutter: ^0.0.3` and complete Android/iOS device testing.
+Both version 0.0.3 packages were published on November 5, 2026:
 
-No package is published by the preparation script.
+- [DigiCoinLib Dart 0.0.3](https://pub.dev/packages/digicoinlib/versions/0.0.3)
+- [DigiCoinLib Flutter 0.0.3](https://pub.dev/packages/digicoinlib_flutter/versions/0.0.3)
+
+DigiByte Wallet integration remains a separate step. The wallet must update its dependency to `digicoinlib_flutter: ^0.0.3` and complete Android/iOS signing, recovery, and upgrade testing before shipping the updated application.
+
+Publishing these libraries does not certify that all real-device wallet tests are complete.

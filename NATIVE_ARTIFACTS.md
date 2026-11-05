@@ -1,4 +1,4 @@
-# Android native artifact provenance — DigiCoinLib Flutter 0.0.3 RC
+# Android native artifact provenance — DigiCoinLib Flutter 0.0.3
 
 Source of truth: authenticated pub.dev `digicoinlib_flutter` 0.0.2 archive,
 compared with the original tracked GitHub baseline and local modified pub cache.
@@ -19,4 +19,4 @@ A debug APK check does not replace real-device signing tests.
 The two `.bak` Android files from the modified local pub cache were not
 included. Android namespace was reconciled against official 0.0.2.
 Generated JNI artifacts are left gitignored if not present in the official archive.
-Validate signing on real Android devices and other native platforms before publication.
+Both packages were published on November 5, 2026. Real-device signing and native platform compatibility checks remain outstanding before production wallet integration.

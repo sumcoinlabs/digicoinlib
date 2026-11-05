@@ -11,15 +11,17 @@
 
 ## Verification gates
 
-- [ ] Compare GitHub runtime/native sources against both published 0.0.2 packages.
-- [ ] Pass new network/BIP32 regression test.
-- [ ] Run complete Dart/Chrome suite and evaluate inherited fixtures.
-- [ ] Run Dart analyzer, Flutter plugin and Flutter example analyzer.
-- [ ] Build Flutter plugin on Android API 36 and test it inside DigiByte Wallet.
-- [ ] Test native secp256k1 on iOS/macOS and actual device upgrades.
-- [ ] Verify release package contents with `dart pub publish --dry-run`.
-- [ ] Publish Dart core, then Flutter wrapper, with explicit authorization.
+- [x] Compared source and native components against official 0.0.2 archives.
+- [x] Passed DigiByte network and BIP32 regression tests.
+- [x] Passed all 285 Dart/Chrome core tests.
+- [x] Passed Dart and Flutter static analysis.
+- [x] Built the Android debug example APK.
+- [x] Verified native secp256k1 exports for four Android architectures.
+- [x] Completed pub.dev package validation.
+- [x] Published both DigiCoinLib 0.0.3 packages on November 5, 2026.
+- [ ] Complete DigiByte Wallet real-device Android signing and upgrade testing.
+- [ ] Complete iOS/macOS native signing and wallet upgrade testing.
 
-This document intentionally does not state that unchecked validation gates have passed. Run results appear in GitHub Actions and local terminal output.
+**Release status:** Both packages are published and available on pub.dev. Remaining device and wallet-compatibility testing is explicitly tracked separately. Successful publication does not constitute a full security audit or certify production wallet upgrades.
 
 Network source: [DigiByte Core src/kernel/chainparams.cpp](https://github.com/DigiByte-Core/digibyte/blob/develop/src/kernel/chainparams.cpp). Do not infer DigiByte consensus activation of arbitrary script types from library API support.

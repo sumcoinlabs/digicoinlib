@@ -2,7 +2,8 @@
   <a href="https://digibyte.org/"><img src="https://raw.githubusercontent.com/DigiByte-Core/digibyte/develop/share/pixmaps/digibyte256.png" width="110" alt="DigiByte logo"></a>
 </p>
 <p align="center">
-  <a href="https://github.com/sumcoinlabs/digicoinlib"><img src="https://img.shields.io/badge/source-0.0.3--candidate-0066CC" alt="DigiCoinLib 0.0.3 source"></a>
+  <a href="https://pub.dev/packages/digicoinlib/versions/0.0.3"><img src="https://img.shields.io/badge/Dart-0.0.3%20published-0175C2" alt="DigiCoinLib Dart 0.0.3 published"></a>
+  <a href="https://pub.dev/packages/digicoinlib_flutter/versions/0.0.3"><img src="https://img.shields.io/badge/Flutter-0.0.3%20published-02569B" alt="DigiCoinLib Flutter 0.0.3 published"></a>
   <a href="https://github.com/sumcoinlabs/digicoinlib/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-BSD--3--Clause-blue" alt="BSD-3-Clause"></a>
   <a href="https://github.com/sumcoinlabs/digicoinlib/tree/master/digicoinlib"><img src="https://img.shields.io/badge/Dart-library-0175C2?logo=dart" alt="Dart library"></a>
   <a href="https://github.com/sumcoinlabs/digicoinlib/tree/master/digicoinlib_flutter"><img src="https://img.shields.io/badge/Flutter-plugin-02569B?logo=flutter" alt="Flutter plugin"></a>
@@ -18,7 +19,7 @@ DigiCoinLib provides DigiByte address encoding, BIP32 hierarchical keys, WIF han
 | [`digicoinlib/`](digicoinlib/) | [`digicoinlib`](https://pub.dev/packages/digicoinlib) | Pure Dart transaction and cryptographic APIs |
 | [`digicoinlib_flutter/`](digicoinlib_flutter/) | [`digicoinlib_flutter`](https://pub.dev/packages/digicoinlib_flutter) | Cross-platform Flutter native/web loader |
 
-**0.0.3 is a source release candidate until validated and published to pub.dev.** See [Changelog](CHANGELOG.md), [Migration guide](MIGRATION.md), and [Validation checklist](VALIDATION.md).
+**Version 0.0.3 is officially published on pub.dev for both Dart and Flutter.** See [Changelog](CHANGELOG.md), [Migration guide](MIGRATION.md), and [Validation checklist](VALIDATION.md).
 
 ## Network configuration
 
@@ -39,7 +40,7 @@ cd ../digicoinlib_flutter && flutter pub get && flutter analyze
 cd example && flutter pub get && flutter analyze
 ```
 
-Before the unpublished 0.0.3 core is available on pub.dev, use local `pubspec_overrides.yaml` path overrides (the CI workflow creates them) or wait until core publication.
+Normal installations now resolve the published `digicoinlib` 0.0.3 package. Local `pubspec_overrides.yaml` overrides are only needed when developing against unpublished sibling-package changes.
 
 ## Security and compatibility
 
